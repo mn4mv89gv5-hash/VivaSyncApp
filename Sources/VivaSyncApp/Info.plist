@@ -1,0 +1,61 @@
+# VivaSyncApp
+
+Applicazione iOS in Swift per sincronizzare i compiti da Classe Viva al Calendario e ai Promemoria del dispositivo.
+
+## Funzionalità
+
+- Login con username e password del registro personale
+- Salvataggio delle credenziali nel Keychain di iOS
+- Sincronizzazione manuale o automatica
+- Background refresh giornaliero alle 15:00
+- Aggiunta di eventi nel Calendario locale
+- Aggiunta di promemoria in Reminders
+- Notifica locale finale con testo:
+  "I compiti sono stati aggiunti sul calendario e sui promemoria per Classe Viva."
+
+## Endpoint Spaggiari usati
+
+- `https://web.spaggiari.eu/rest/v1/login`
+- `https://web.spaggiari.eu/rest/v1/students/SD/agenda`
+
+Con i valori:
+
+- `API_KEY = "Tg1NWEwNGIgIC0K"`
+- `API_APP_CODE = "SD"`
+- `API_USER_AGENT = "CVVS/std/4.2.3"`
+
+## Importante
+
+Questa app è un punto di partenza. La piattaforma Spaggiari/Classe Viva può richiedere un flusso autentico leggermente differente a seconda dell'istituto o della versione del backend. Per completare la versione finale per il tuo account, è utile verificare sulla tua scuola se richiede cookies, token aggiuntivi o parametri specifici.
+
+## In Xcode
+
+1. Apri il progetto in Xcode
+2. Imposta il bundle identifier
+3. Aggiungi le autorizzazioni:
+   - `NSCalendarsUsageDescription`
+   - `NSRemindersUsageDescription`
+4. Verifica il `BGTaskSchedulerPermittedIdentifiers` e l'app background refresh
+5. Builda su dispositivo iOS 16+
+
+## Componenti principali
+
+- `VivaSyncApp.swift`
+- `ContentView.swift`
+- `Models/ClasseVivaTask.swift`
+- `Services/SpaggiariClient.swift`
+- `Services/EventKitManager.swift`
+- `Services/RemindersManager.swift`
+- `Services/BackgroundScheduler.swift`
+- `Services/NotificationManager.swift`
+- `ViewModels/SyncViewModel.swift`
+
+## Esecuzione locale
+
+```bash
+swift build
+```
+
+## Nota finale
+
+Questo scaffolding è già orientato alla tua richiesta: app iOS con login personale, calendario e reminder locali, background sync alle 15:00 e notifica finale. Il prossimo passaggio pratico è testare il login reale contro il tuo account Classe Viva e adattare eventuali parametri API specifici del tuo istituto.
